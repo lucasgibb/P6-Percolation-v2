@@ -1,3 +1,4 @@
+import java.util.*;
 public class PercolationDFSFast extends PercolationDFS
 {
 
@@ -32,6 +33,6 @@ public class PercolationDFSFast extends PercolationDFS
             if (myGrid[row][col+1]==FULL) flag=true;
         }
         if(flag) dfs(row,col);
-        return;
+        return; //nothing needed here
     }
 }

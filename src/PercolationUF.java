@@ -1,3 +1,4 @@
+import java.util.*;
 public class PercolationUF implements IPercolate
 {
     private IUnionFind myFinder;
@@ -7,8 +8,8 @@ public class PercolationUF implements IPercolate
     private int myOpenCount;
 
     /** Constructor for PercolationUF initializes the class variables above.
-     *the IUnionFind object passed as a parameter is initialized, and the IUnionFind object in the class is assigned that
-     *the myGrid object is initialized with all the n^2 cells being 'false'.
+     *the IUnionFind object passed as a parameter is initialized; the IUnionFind object in the class is assigned that
+     *the myGrid object is initialized with all the n squared cells as false.
      *VTOP and VBOTTOM are assigned a fixed value which will not be the same as the map of any legitimate row, col pair.
      *@parameter finder used to assign the value of myFinder
      *@parameter size, an integer which provides the size of the grid
@@ -28,12 +29,12 @@ public class PercolationUF implements IPercolate
         }
         myOpenCount=0;
         VTOP=size*size;
-        VBOTTOM=size*size + 1;
+        VBOTTOM=size*size + 1; //makes these out of gird
     }
 
     /** Checks if the row and col values passed are valid indices or not.
-     *@param row, the row index
-     *@param col, the column index
+     *@parameter row, the row index
+     *@parameter col, the column index
      */
 
     public boolean inBounds(int row, int col) {
@@ -51,7 +52,7 @@ public class PercolationUF implements IPercolate
     {
         if (! inBounds(row,col)) {
             throw new IndexOutOfBoundsException(
-                    String.format("(%d,%d) not in bounds", row,col));
+                    String.format("(%d,%d) is not inbounds", row,col));
         }
         return (myGrid[row][col]);
     }
@@ -67,7 +68,7 @@ public class PercolationUF implements IPercolate
     {
         if (! inBounds(row,col)) {
             throw new IndexOutOfBoundsException(
-                    String.format("(%d,%d) not in bounds", row,col));
+                    String.format("(%d,%d) is not inbounds", row,col));
         }
         int d = row*(myGrid.length) + col; //the single integer value
         return (myFinder.connected(d,VTOP));
@@ -98,10 +99,10 @@ public class PercolationUF implements IPercolate
     {
         if (! inBounds(row,col)) {
             throw new IndexOutOfBoundsException(
-                    String.format("(%d,%d) not in bounds", row,col));
+                    String.format("(%d,%d) is not inbounds", row,col));
         }
         if (myGrid[row][col]) return;
-        int d = row*(myGrid.length) + col;
+        int d = row*(myGrid.length) + col; //single integer value
         myGrid[row][col]=true;
         myOpenCount=myOpenCount+1;
         if (row==0) myFinder.union(d, VTOP);
@@ -139,6 +140,6 @@ public class PercolationUF implements IPercolate
                 myFinder.union(d,q);
             }
         }
-        return;
+        return; //nothing needed here
     }
 }

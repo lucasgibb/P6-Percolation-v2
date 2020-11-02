@@ -11,8 +11,8 @@ public class PercolationBFS extends PercolationDFSFast
         super(n);
     }
     /**
-     * Uses a breadth-first search approach
-     * Extends the fast depth-first search approach
+     * Uses a bfs approach
+     * Extends the fast dfs approach used earlier
      */
     @Override
     public void dfs(int row, int col) //variables are same as other class
@@ -24,8 +24,8 @@ public class PercolationBFS extends PercolationDFSFast
         while(qp.size() !=0)
         {
             Integer r = qp.remove();
-            int nr = r/sz; //new row
-            int nc = r%sz; //new column
+            int nr = r / sz; //new row
+            int nc = r % sz; //new column
             if (nr>0)
             {
                 if (myGrid[nr-1][nc]==OPEN)
@@ -59,6 +59,6 @@ public class PercolationBFS extends PercolationDFSFast
                 }
             }
         }
-        return;
+        return; //nothing needed here
     }
 }
